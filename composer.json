@@ -3,6 +3,7 @@
     "description": "PHP helpers",
     "type": "library",
     "require": {
+        "bnpparibas/helpers": "0.0.1"
     },
     "authors": [
         {
@@ -10,5 +11,11 @@
             "email": "khalidsookia@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": { "Bnpparibas\\Helpers\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
     "minimum-stability": "stable"
 }
