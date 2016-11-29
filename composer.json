@@ -3,7 +3,7 @@
     "description": "PHP helpers",
     "type": "library",
     "require": {
-        "bnpparibas/helpers": "0.0.1"
+        "bnpparibas/helpers": "0.0.3"
     },
     "authors": [
         {
