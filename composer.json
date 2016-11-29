@@ -1,0 +1,15 @@
+{
+    "name": "bnpparibas/helpers",
+    "description": "PHP helpers",
+    "type": "library",
+    "require": {
+        "php": "^5.3"
+    },
+    "authors": [
+        {
+            "name": "Khalid Sookia",
+            "email": "khalidsookia@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
