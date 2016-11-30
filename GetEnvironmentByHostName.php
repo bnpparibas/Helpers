@@ -6,7 +6,7 @@
  * Time: 19:50
  */
 
-namespace Bnpparibas\Helpers;
+namespace Romenys\Helpers;
 
 
 class GetEnvironmentByHostName

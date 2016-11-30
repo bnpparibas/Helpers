@@ -1,9 +1,9 @@
 {
-    "name": "bnpparibas/helpers",
+    "name": "romenys/helpers",
     "description": "PHP helpers",
     "type": "library",
     "require": {
-        "bnpparibas/helpers": "0.0.3-stable"
+        "bnpparibas/helpers": ">=0.0.3"
     },
     "authors": [
         {
@@ -12,7 +12,7 @@
         }
     ],
     "autoload": {
-        "psr-4": { "Bnpparibas\\Helpers\\": "" },
+        "psr-4": { "Romenys\\Helpers\\": "" },
         "exclude-from-classmap": [
             "/Tests/"
         ]
