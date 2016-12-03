@@ -62,6 +62,3 @@ class GetEnvironmentByHostName
         return $this;
     }
 }
-
-$environment = new GetEnvironmentByHostName();
-$environment->getEnv();
