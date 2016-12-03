@@ -13,7 +13,7 @@ class GetEnvironmentByHostName
 {
     private $env = null;
 
-    private $hosts;
+    private $hosts = [];
 
     public function __construct()
     {
@@ -23,7 +23,7 @@ class GetEnvironmentByHostName
 
     public function setHosts()
     {
-        $this->hosts = parse_ini_file(__DIR__ . '/../../../app/config/hosts.ini', true);
+        $this->hosts = json_decode(file_get_contents('app/config/hosts.json'), true);
 
         return $this;
     }
@@ -47,13 +47,13 @@ class GetEnvironmentByHostName
 
     public function checkHostForEnv()
     {
-        foreach ($this->getHosts() as $env => $hosts) {
-            if (isset($hosts["host"]) && in_array($_SERVER["SERVER_NAME"], $hosts["host"])) {
-                $this->setEnv($env);
-            }
-        }
-
         try {
+            foreach ($this->getHosts() as $env => $hosts) {
+                if (in_array($_SERVER["SERVER_NAME"], $hosts)) {
+                    $this->setEnv($env);
+                }
+            }
+
             if (is_null($this->getEnv())) throw new \Exception('Host not allowed');
         } catch (\Exception $e) {
             die($e->getMessage());
