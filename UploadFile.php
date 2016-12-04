@@ -81,7 +81,7 @@ class UploadFile
                         $containerFile["uploaded_file_dir"] = $this->getUploadDir();
                         $containerFile["uploaded_file"] = $fileDestination;
 
-                        $this->containerFiles[] = $containerFile;
+                        $this->containerFiles[$containerName] = $containerFile;
                     }
                 }
             }
