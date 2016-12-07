@@ -64,24 +64,49 @@ class UploadFile
         }
     }
 
+    private function addFileToContainerFiles($containerFile)
+    {
+        $uploaded_file_name = $this->generateUniqueId('FILE_');
+
+        if (is_uploaded_file($containerFile['tmp_name'])) {
+            $uploaded_file_extension = $this->getFileExtension($containerFile["name"]);
+            $fileDestination = $this->getUploadDir() . $uploaded_file_name . '.' . $uploaded_file_extension;
+
+            if (!is_dir($this->getUploadDir()) && $this->getCreateDirectoryIfNotExist()) mkdir($this->getUploadDir(), 0777, true);
+
+            if (move_uploaded_file($containerFile["tmp_name"], $fileDestination)) {
+                $containerFile["uploaded_file_extension"] = $uploaded_file_extension;
+                $containerFile["uploaded_file_name"] = $uploaded_file_name;
+                $containerFile["uploaded_file_dir"] = $this->getUploadDir();
+                $containerFile["uploaded_file"] = $fileDestination;
+
+                return $containerFile;
+            }
+        }
+    }
+
     private function uploadFiles(array $files)
     {
         foreach ($files as $fileContainers) {
             foreach ($fileContainers as $containerName => $containerFile) {
-                if (is_uploaded_file($containerFile['tmp_name'])) {
-                    $uploaded_file_name = $this->generateUniqueId('FILE_');
-                    $uploaded_file_extension = $this->getFileExtension($containerFile["name"]);
-                    $fileDestination = $this->getUploadDir() . $uploaded_file_name . '.' . $uploaded_file_extension;
 
-                    if (!is_dir($this->getUploadDir()) && $this->getCreateDirectoryIfNotExist()) mkdir($this->getUploadDir(), 0777, true);
+                if (is_string($containerFile['tmp_name'])) {
+                    $addedFile = $this->addFileToContainerFiles($containerFile);
 
-                    if (move_uploaded_file($containerFile["tmp_name"], $fileDestination)) {
-                        $containerFile["uploaded_file_extension"] = $uploaded_file_extension;
-                        $containerFile["uploaded_file_name"] = $uploaded_file_name;
-                        $containerFile["uploaded_file_dir"] = $this->getUploadDir();
-                        $containerFile["uploaded_file"] = $fileDestination;
+                    $this->containerFiles[$containerName] = $addedFile;
+                } else {
+                    $entityContainerFile[$containerName] = [];
+                    foreach ($containerFile as $key => $value) {
 
-                        $this->containerFiles[$containerName] = $containerFile;
+                        foreach ($value as $fieldName => $content) {
+                            $entityContainerFile[$containerName][$fieldName][$key] = $content;
+                        }
+                    }
+
+                    foreach ($entityContainerFile[$containerName] as $fieldName => $containerFile) {
+                        $addedFile = $this->addFileToContainerFiles($containerFile);
+
+                        $this->containerFiles[$containerName][$fieldName] = $addedFile;
                     }
                 }
             }
