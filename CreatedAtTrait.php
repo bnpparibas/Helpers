@@ -10,6 +10,8 @@ namespace Romenys\Helpers;
 
 trait CreatedAtTrait
 {
+    private $createdAt;
+
     public function setCreatedAt($dateParams = null)
     {
         $dateParams = is_null($dateParams) ? "NOW" : $dateParams;
