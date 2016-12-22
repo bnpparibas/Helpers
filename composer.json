@@ -3,6 +3,8 @@
     "description": "PHP helpers",
     "type": "library",
     "require": {
+        "php": ">=5.4",
+        "iknsa/helper-bundle": ">=0.0.1"
     },
     "authors": [
         {
@@ -15,5 +17,6 @@
         "exclude-from-classmap": [
             "/Tests/"
         ]
-    }
+    },
+    "minimum-stability": "dev"
 }
