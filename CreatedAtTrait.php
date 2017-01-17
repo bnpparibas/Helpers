@@ -10,12 +10,19 @@ namespace Romenys\Helpers;
 
 trait CreatedAtTrait
 {
+    /**
+     * @var \DateTime
+     */
     private $createdAt;
 
-    public function setCreatedAt($dateParams = null)
+    /**
+     * @param null|array $createdAt
+     *
+     * @return $this
+     */
+    public function setCreatedAt($createdAt = null)
     {
-        $dateParams = is_null($dateParams) ? "NOW" : $dateParams;
-        $this->createdAt = new \DateTime($dateParams);
+        $this->createdAt = empty($createdAt) ? new \DateTime('NOW') : $createdAt;
 
         return $this;
     }
@@ -25,9 +32,6 @@ trait CreatedAtTrait
      */
     public function getCreatedAt()
     {
-        $this->setCreatedAt();
-
-        return $this->getCreatedAt();
+        return $this->createdAt;
     }
 }
-
