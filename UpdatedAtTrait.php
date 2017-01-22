@@ -13,7 +13,7 @@ trait UpdatedAtTrait
     /**
      * @var \DateTime
      */
-    private $updatedAt;
+    protected $updatedAt;
 
     /**
      * @param null|\DateTime $updatedAt
@@ -22,7 +22,17 @@ trait UpdatedAtTrait
      */
     public function setUpdatedAt($updatedAt = null)
     {
-        $this->updatedAt = empty($updatedAt) ? new \DateTime('NOW') : $updatedAt;
+        if (empty($updatedAt)) {
+            $this->updatedAt = new \DateTime('NOW');
+        } else {
+            if (is_string($updatedAt)) {
+                $this->updatedAt = new \DateTime($updatedAt);
+            }
+
+            if ($updatedAt instanceof \DateTime) {
+                $this->updatedAt = $updatedAt;
+            }
+        }
 
         return $this;
     }
@@ -32,8 +42,6 @@ trait UpdatedAtTrait
      */
     public function getUpdatedAt()
     {
-        $this->setUpdatedAt();
-
-        return $this->getUpdatedAt();
+        return $this->updatedAt;
     }
 }

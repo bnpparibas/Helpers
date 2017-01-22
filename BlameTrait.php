@@ -16,12 +16,12 @@ trait BlameTrait
     /**
      * @var User
      */
-    private $createdBy;
+    protected $createdBy;
 
     /**
      * @var User
      */
-    private $updatedBy;
+    protected $updatedBy;
 
     /**
      * @return User

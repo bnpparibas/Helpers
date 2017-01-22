@@ -13,7 +13,7 @@ trait CreatedAtTrait
     /**
      * @var \DateTime
      */
-    private $createdAt;
+    protected $createdAt;
 
     /**
      * @param null|array $createdAt
@@ -22,7 +22,17 @@ trait CreatedAtTrait
      */
     public function setCreatedAt($createdAt = null)
     {
-        $this->createdAt = empty($createdAt) ? new \DateTime('NOW') : $createdAt;
+        if (empty($createdAt)) {
+            $this->createdAt = new \DateTime('NOW');
+        } else {
+            if (is_string($createdAt)) {
+                $this->createdAt = new \DateTime($createdAt);
+            }
+
+            if ($createdAt instanceof \DateTime) {
+                $this->createdAt = $createdAt;
+            }
+        }
 
         return $this;
     }
