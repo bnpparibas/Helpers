@@ -6,10 +6,10 @@
  * Time: 19:50
  */
 
-namespace Romenys\Helpers;
+namespace PhpLight\Helpers;
 
 use BNPPARIBAS\REFOG\AuthenticatorBundle\Entity\User;
-use Romenys\Http\Request\Request;
+use PhpLight\Http\Request\Request;
 
 trait BlameTrait
 {

@@ -6,7 +6,7 @@
  * Time: 19:50
  */
 
-namespace Romenys\Helpers;
+namespace PhpLight\Helpers;
 
 trait CreatedAtTrait
 {

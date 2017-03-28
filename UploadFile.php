@@ -6,7 +6,7 @@
  * Time: 11:54
  */
 
-namespace Romenys\Helpers;
+namespace PhpLight\Helpers;
 
 
 use IKNSA\HelperBundle\Traits\GenerateUniqueIdTrait;
