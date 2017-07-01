@@ -15,7 +15,7 @@ class UploadFile
 {
     use GenerateUniqueIdTrait;
 
-    const DEFAULT_UPLOAD_DIR = 'web/upload/';
+    const DEFAULT_UPLOAD_DIR = 'web/uploads/';
 
     private $uploadDir;
 
