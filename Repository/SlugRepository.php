@@ -25,6 +25,8 @@ class SlugRepository
      */
     public function generate($table, $field, $string, $filters, $separator='-')
     {
+        $string = str_replace(["\r\n", "\r", "\n", "\t"], '', $string);
+
         $slug = Transliterator::transliterate($string, $separator);
 
         $db = (new DB())->connect();
